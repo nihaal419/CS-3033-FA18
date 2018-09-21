@@ -78,7 +78,7 @@ for(i = 0; i<scores.length; i++){
     // If score[i] is not in uniq,
     if(!(scores[i] == uniq)){
         // put score[i] in uniq with value true and append score[i] to ranks.
-        uniq = scores[i];
+        uniq.push(scores[i]);
         ranks.push(scores[i]);
     }
     // Otherwise, ignore score[i] --- it's a duplicate.
@@ -93,74 +93,77 @@ console.log(ranks);
 
 // Define a function binarySearch which takes four parameters: rankings, aliceScore, i, j .
 // This function will perform a binary search on rankings to determine where to insert aliceScore.
-
+function binarySearch(rankings, aliceScore, i, j){ 
     // I won't have you validate the inputs, but when writing JavaScript: VALIDATE EVERYTHING!
 
     // We need a base case for binarySearch.
     // Use an if statement to check if i = j. Use proper equality.
     // If i = j, then compare rankings[i] to aliceScore.
-
+    if(i == j){ 
         // If aliceScore >= rankings[i],
-        
+        if(aliceScore >= rankings[i]){ 
             // then return i --- aliceScore is the new i rank.
-
-        
+            aliceScore == i;
+            return aliceScore;
+        }
         // Else if aliceScore < rankings[i]
-        
+        else if(aliceScore < rankings[i]){ 
             // then return i+1 --- aliceScore is the new i+1 rank.
-
-        
+            aliceScore = i+1;
+            return aliceScore;
+        }
         // If you want style points, implement the return statement with a ternary operator.
-
-    
+        return binarySearch(rankings ,aliceScore, i+1, j);
+    }
     // Initialize a variable pivot with value (number of rankings) / 2 . Don't forget to use var.
     // Remember that JavaScript doesn't have integer division.
     // How can we make (number of rankings) / 2 an integer?
     // HINT: There is a Math library with a ceil function or you could use modulus.
     // With modulus, N % 2 = 1 means that N is odd. 0 means even. Don't forget operator precedence.
-
+    var pivot = Math.ceil((rankings.length)/2);
 
     // Use an if statement to check if rankings[pivot] = aliceScore.
     // If aliceScore = rankings[pivot]
-    
+    if(aliceScore = rankings[pivot]){ 
         // use a return statement to return pivot.
-    
-    
+        return pivot;
+    }
     // Else if aliceScore > rankings[pivot]
-    
+    else if(aliceScore > rankings[pivot]){ 
         // recursively call binarySearch.
         // rankings is descending so use arguments: rankings, aliceScore, i, pivot-1 .
-    
-    
+        binarySearch(rankings, aliceScore, i, pivot-1);
+    }
     // Else if aliceScore < rankings[pivot]
-    
+    else if(aliceScore < rankings[pivot]){ 
         // recursively call binarySearch.
         // rankings is descending so use arguments: rankings, aliceScore, pivot+1, j .
-
-    
+        binarySearch(rankings, aliceScore, pivot+1, j);
+    }
     // That's the end of binarySearch.
-
+}
 
 // Using a for-in loop with variable gamej, iterate over the values of games.
-
+for(var gamej in games){ 
     // For each value gamej, call binarySearch with arguments: ranks, gamej, 0, m-1 .
     // binarySearch will return an index, initialize a variable r equal to this index.
-
+    var r = binarySearch(ranks, gamej, 0, m-1);
 
     // r is the rank assigned to gamej.
     // If r is not in uniq
-    
+    if(!(Object.values(uniq).indexOf(r) > -1)){ 
         // insert gamej in ranks at index r and put gamej in uniq with value true.
-
-
-    
+        ranks.push(r);
+        uniq.push(gamej);
+    }
     // Log the value of r (don't forget to add 1 to r since leaderboards are 1-indexed).
-
+    console.log(r);
     // The output should be 6, 4, 2, 1 .
-
+}
 
 // Log ranks so that we can see the new leaderboard.
 // The output should be [120, 100, 50, 40, 25, 20, 10, 5] .
+console.log(ranks);
 
 
 // Congratulations! You've just solved Climbing the Leaderboard.
@@ -171,34 +174,41 @@ console.log(ranks);
 
 // Set the value of n to 6 .
 
+var n = 6;
 
 // Set the value of scores to an Array with elements: 100, 90, 90, 80, 75, 60 .
 
+var scores = [100, 90, 90, 80, 75, 60];
 
 // Set the value of m to 5 .
 
+var m = 5;
 
 // Set the value of games to an Array with elements: 50, 65, 77, 90, 102 .
 
+var games = [50, 65, 77, 90, 102];
 
 // Set uniq to an empty Object and set ranks to an empty Array.
 
+var uniq = {};
+
+var ranks = [];
 
 // Every Array provides a forEach method which can be called using: array.forEach([func]);.
 // The forEach method calls the argument func once for each element in the array.
 // Use the forEach method to iterate over scores.
 // The argument that you pass should be an anonymous function which takes one parameter: scorei .
-
+function anonymous(scorei){ 
     // Inside the body of the anonymous function, call setTimeout(cb, 0);.
     // cb should be another anonymous function with no parameters.
     // cb is a closure so it will retain the reference to scorei .
-
+    setTimeout(cb, 0);
         // Inside cb, copy the code we used earlier to filter out duplicates.
     
     
     // The forEach will still be synchronous, but the cb calls will be asynchronous.
 
-
+}
 // Log ranks so that we can see the filtered scores.
 
 // The output should be []? Why? You don't need to log this answer.
