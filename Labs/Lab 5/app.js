@@ -13,25 +13,26 @@ firebase.initializeApp(config);
 // use JQuery to call your code after the document.ready event
 $(function() {
     // TODO: create an empty array named products
-
+    var products = [];
     // TODO: use JQuery to attach a click handler to the button element. The click handler should take one argument: event
-
+    $("#button").click(function(event){
         // TODO: log event
-
+        console.log(event);
         // TODO: iterate over the products array
-
+        products.forEach(function(key){
             // TODO: check if the product has a product["rating"] of <2
-
+            if(key.product["rating"] < 2){
                 // TODO: use JQuery to select the product element with id=product["id"].
                 // don't forget to prepend "#" to use the id selector
-
+                var id = product["id"];
                 // TODO: hide the product element with .hide()
+                id.hide();
             // end if
-
+            }
         // end forEach
-
+        });
     // end click handler
-
+    });
     // save the firebase database to a variable named database
     var database = firebase.database();
     // use database to access "departments/books"
